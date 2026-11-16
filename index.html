@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Naqvi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #13233f;
+    --navy-deep: #0d1a2f;
+    --cream: #f6f1e7;
+    --cream-2: #ece4d3;
+    --card: #fbf8f1;
+    --gold: #a9874f;
+    --line: #ddd4c1;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--cream); color: var(--navy);
+    line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+
+  section, header { padding: 120px 0; }
+  footer { padding: 34px 0; border-top: 1px solid var(--line); font-size: 0.84rem; color: var(--navy); opacity: 0.6; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+  .eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 14px; }
+  .section-title { font-size: clamp(1.8rem, 3.2vw, 2.4rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 48px; color: var(--navy); }
+
+  /* NAV */
+  nav.top {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    background: rgba(246,241,231,0.9); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .mark {
+    width: 38px; height: 38px; border-radius: 9px; display: grid; place-items: center;
+    background: var(--navy); color: var(--cream);
+    font-weight: 700; font-size: 0.8rem; letter-spacing: 0.04em;
+  }
+  nav.top ul { list-style: none; display: flex; gap: 30px; }
+  nav.top ul a { color: var(--navy); opacity: 0.6; font-size: 0.88rem; font-weight: 500; transition: opacity .2s; }
+  nav.top ul a:hover { opacity: 1; }
+  @media (max-width: 760px) { nav.top ul { display: none; } }
+
+  /* HERO */
+  header.hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 110px; position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 72px; align-items: center; }
+  .greet { color: var(--gold); font-size: 0.95rem; font-weight: 500; margin-bottom: 14px; }
+  .hero h1 { font-size: clamp(2.8rem, 6vw, 4.6rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.04; color: var(--navy); }
+  .slogan { font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--navy); opacity: 0.75; margin-top: 22px; }
+  .cta { display: flex; gap: 12px; margin-top: 40px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; padding: 13px 26px; border-radius: 8px;
+    font-weight: 500; font-size: 0.92rem; transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--navy); color: var(--cream); }
+  .btn-primary:hover { background: #1d3358; }
+  .btn-ghost { border: 1px solid var(--navy); color: var(--navy); }
+  .btn-ghost:hover { background: var(--navy); color: var(--cream); }
+  .photo-frame {
+    position: relative; border-radius: 22px; overflow: hidden;
+    background: var(--cream-2); aspect-ratio: 4 / 5;
+    box-shadow: 0 30px 60px -36px rgba(13,26,47,0.45);
+  }
+  .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .scroll-cue {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    color: var(--navy); opacity: 0.5; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .scroll-cue::after {
+    content: ""; display: block; width: 1px; height: 34px; margin: 10px auto 0;
+    background: linear-gradient(var(--navy), transparent);
+  }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .photo-frame { aspect-ratio: 1 / 1; max-width: 420px; }
+    .scroll-cue { display: none; }
+  }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .about-text p { color: var(--navy); opacity: 0.8; font-size: 1.02rem; max-width: 480px; }
+  .about-text p + p { margin-top: 16px; }
+  .about-photo { border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 5; border: 1px solid var(--line); }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+  /* EXPERIENCE */
+  .timeline { display: grid; gap: 14px; }
+  .job {
+    display: grid; grid-template-columns: 150px 1fr auto; gap: 26px; align-items: center;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px 28px; transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  .job:hover { border-color: var(--gold); box-shadow: 0 14px 30px -22px rgba(13,26,47,0.35); }
+  .logo-tile {
+    width: 150px; height: 88px; border-radius: 10px; background: #ffffff;
+    display: flex; align-items: center; justify-content: center; padding: 10px;
+    border: 1px solid #ece6d9;
+  }
+  .logo-tile img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+  .job-title { font-size: 1.05rem; font-weight: 600; color: var(--navy); }
+  .org { color: var(--navy); opacity: 0.7; font-size: 0.9rem; margin-top: 2px; }
+  .job ul { color: var(--navy); opacity: 0.75; font-size: 0.9rem; margin-top: 10px; padding-left: 18px; max-width: 680px; }
+  .job ul li { margin-bottom: 6px; }
+  .job ul li:last-child { margin-bottom: 0; }
+  .dates { color: var(--gold); font-size: 0.84rem; font-weight: 500; white-space: nowrap; }
+  @media (max-width: 680px) { .job { grid-template-columns: 1fr; padding: 24px; } .logo-tile { width: 100px; } }
+
+  /* PROJECT */
+  .project {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    background: var(--navy); border-radius: 18px; padding: 48px; color: var(--cream);
+  }
+  .project .tag { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .project h3 { font-size: 1.9rem; font-weight: 600; letter-spacing: -0.02em; margin: 12px 0 8px; color: var(--cream); }
+  .project .sub { color: var(--cream); opacity: 0.8; font-size: 0.95rem; }
+  .visit { display: inline-block; margin-top: 22px; color: var(--cream); font-size: 0.9rem; font-weight: 500; border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+  .visit:hover { color: var(--gold); }
+  .point { display: flex; gap: 20px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(246,241,231,0.15); }
+  .point:first-child { padding-top: 0; }
+  .point:last-child { border-bottom: none; padding-bottom: 0; }
+  .point b { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; min-width: 92px; color: var(--cream); }
+  .point span { color: var(--cream); opacity: 0.85; font-size: 0.93rem; }
+  @media (max-width: 860px) { .project { grid-template-columns: 1fr; padding: 32px; gap: 32px; } }
+
+  /* SKILLS */
+  .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .skill-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .skill-card h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+  .skill-card .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { font-size: 0.84rem; padding: 6px 12px; border-radius: 6px; background: var(--cream); border: 1px solid var(--line); color: var(--navy); }
+  @media (max-width: 860px) { .skill-grid { grid-template-columns: 1fr; } }
+
+  /* EDUCATION */
+  .edu { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; }
+  .edu .job-title { font-size: 1.05rem; }
+  .edu p { color: var(--navy); opacity: 0.6; font-size: 0.9rem; margin-top: 6px; }
+  @media (max-width: 680px) { .edu { grid-template-columns: 1fr; } }
+
+  /* CONTACT */
+  .contact h2 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--navy); }
+  .contact p { color: var(--navy); opacity: 0.75; font-size: 1.02rem; margin-top: 18px; max-width: 520px; }
+  .contact .cta { margin-top: 36px; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a href="#top" class="mark" aria-label="Home">MN</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="greet">Hello, I'm</p>
+      <h1>Muhammad Naqvi</h1>
+      <p class="slogan">Turning data into better decisions.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="Muhammad_Naqvi_Resume.pdf">Download Resume</a>
+        <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+    <div class="photo-frame reveal">
+      <img src="headshot.png" alt="Portrait of Muhammad Naqvi">
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="eyebrow">About Me</p>
+        <h2 class="section-title" style="margin-bottom:24px;">Hi, I'm glad you stopped by.</h2>
+        <p>I'm a Business Technology Management student at Toronto Metropolitan University, focused on the intersection of business, data and technology. I'm currently a Product Intern at RBC, where I analyze product performance and AI/ML workflows to identify opportunities for optimization and automation.</p>
+        <p>Previously, I worked as a Data Analyst Intern at Cycom Technology Solutions and led strategy and growth initiatives at Mahdi Youth Society. I am driven by work that delivers measurable impact and simplifies the experience for the people who use it.</p>
+      </div>
+      <div class="about-photo reveal">
+        <img src="toronto.jpg" alt="The CN Tower rising above downtown Toronto">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <p class="eyebrow reveal">Experience</p>
+    <h2 class="section-title reveal">Where I've worked</h2>
+    <div class="timeline">
+
+      <article class="job reveal">
+        <div class="logo-tile"><img src="rbc.png" alt="RBC logo"></div>
+        <div>
+          <div class="job-title">Product Intern</div>
+          <div class="org">RBC &middot; Toronto, ON</div>
+          <ul>
+            <li>Analyze product metrics and AI/ML workflows to uncover inefficiencies and drive optimization.</li>
+            <li>Built Tableau dashboards tracking 15+ product and operational KPIs.</li>
+            <li>Partner with 10+ stakeholders to turn business needs into measurable product improvements.</li>
+          </ul>
+        </div>
+        <div class="dates">Sep 2026 &ndash; Present</div>
+      </article>
+
+      <article class="job reveal">
+        <div class="logo-tile"><img src="cycom.png" alt="Cycom Technology Solutions logo"></div>
+        <div>
+          <div class="job-title">Data Analyst Intern</div>
+          <div class="org">Cycom Technology Solutions &middot; Toronto, ON</div>
+          <ul>
+            <li>Gathered requirements and documented workflows across 2–3 IT consulting initiatives.</li>
+            <li>Built Excel reporting tools that cut manual reporting time by 30%.</li>
+            <li>Identified 5+ operational trends to inform consultant-facing reports.</li>
+          </ul>
+        </div>
+        <div class="dates">Jan 2026 &ndash; Jun 2026</div>
+      </article>
+
+      <article class="job reveal">
+        <div class="logo-tile"><img src="mahdi.png" alt="Mahdi Youth Society logo"></div>
+        <div>
+          <div class="job-title">Director of Strategy &amp; Growth</div>
+          <div class="org">Mahdi Youth Society &middot; Pickering, ON</div>
+          <ul>
+            <li>Grew community engagement by 40%, reaching 600+ members.</li>
+            <li>Aligned finance, marketing, and operations teams around shared strategic priorities.</li>
+            <li>Prioritized high-impact initiatives within event and funding budgets.</li>
+          </ul>
+        </div>
+        <div class="dates">Mar 2024 &ndash; Oct 2024</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="eyebrow reveal">Projects</p>
+    <h2 class="section-title reveal">Featured work</h2>
+    <article class="project reveal">
+      <div>
+        <span class="tag">Experiential Tech &amp; Data</span>
+        <h3>Elderado.ca</h3>
+        <p class="sub">I cleaned and structured the platform's data, wrote the user stories behind its new features, and mapped how data moves between systems so the team could report faster.</p>
+      </div>
+      <div>
+        <div class="point"><b>5x</b><span>Faster recurring operational reports, with fewer errors.</span></div>
+        <div class="point"><b>2,000+</b><span>Records cleaned, structured and analyzed.</span></div>
+        <div class="point"><b>25%</b><span>Less platform rework from clearer user stories.</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow reveal">Skills</p>
+    <h2 class="section-title reveal">Technical Skills</h2>
+    <div class="skill-grid">
+      <div class="skill-card reveal">
+        <h3>Data &amp; Analytics</h3>
+        <div class="pills">
+          <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">Tableau</span>
+          <span class="pill">Google Analytics</span><span class="pill">A/B Testing</span><span class="pill">IBM SPSS</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Product &amp; Delivery</h3>
+        <div class="pills">
+          <span class="pill">Requirements Gathering</span><span class="pill">KPI Definition</span>
+          <span class="pill">User Stories</span><span class="pill">Process Analysis</span>
+          <span class="pill">Jira</span><span class="pill">Confluence</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Productivity</h3>
+        <div class="pills">
+          <span class="pill">Excel</span><span class="pill">PivotTables</span><span class="pill">XLOOKUP</span>
+          <span class="pill">PowerPoint</span><span class="pill">Word</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <p class="eyebrow reveal">Education</p>
+    <h2 class="section-title reveal">Academic background</h2>
+    <div class="edu reveal">
+      <div>
+        <div class="job-title">Bachelor of Commerce, Business Technology Management</div>
+        <div class="org">Ted Rogers School of Management, Toronto Metropolitan University</div>
+        <p>Information Systems, IT Infrastructure, Systems Analysis and Design</p>
+      </div>
+      <div class="dates">Sep 2023 &ndash; Dec 2027</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="eyebrow reveal">Contact</p>
+    <h2 class="reveal">Get in touch.</h2>
+    <p class="reveal">Open to product, data and business analysis roles. Email is the fastest way to reach me.</p>
+    <div class="cta reveal">
+      <a class="btn btn-primary" href="mailto:m1naqvi@torontomu.ca">m1naqvi@torontomu.ca</a>
+      <a class="btn btn-ghost" href="tel:+14166789791">416-678-9791</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Muhammad Naqvi</span>
+    <span>Toronto, Ontario</span>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach((el) => io.observe(el));
+  } else {
+    els.forEach((el) => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
